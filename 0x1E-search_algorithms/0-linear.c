@@ -1,53 +1,30 @@
-#ifndef SEARCH_ALGOS_H
-#define SEARCH_ALGOS_H
-
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "search_algos.h"
 
 /**
- * struct listint_s - a singly linked list
- *
- * @n: an integer
- * @index: an index of the node in the list
- * @next: a pointer to the next node
- *
- * Description: a singly linked list node structure
- * Holberton project
- */
-typedef struct listint_s
+  * linear_search - Searches for a value in an array
+  *                 of integers using linear search.
+  * @array: pointer to the first element of the array to search.
+  * @size: number of elements in the array.
+  * @value: The value to search.
+  *
+  * Return: -1, If the value is not present or the array is NULL.
+  *         Otherwise, the first index where the value is located.
+  *
+  * Description: it prints a value every time it is compared in the array.
+  */
+int linear_search(int *array, size_t size, int value)
 {
-		int n;
-		size_t index;
-		struct listint_s *next;
-} listint_t;
+	size_t i;
 
-/**
- * struct skiplist_s - a singly linked list with an express lane
- *
- * @n: Integer
- * @index: an index of the node in the list
- * @next: a pointer to the next node
- * @express: a pointer to the next node in the express lane
- *
- * Description: singly linked list node structure with an express lane
- * Holberton project
- */
-typedef struct skiplist_s
-{
-				int n;
-				size_t index;
-				struct skiplist_s *next;
-				struct skiplist_s *express;
-} skiplist_t;
+	if (array == NULL)
+		return (-1);
 
-int linear_search(int *array, size_t size, int value);
-int binary_search(int *array, size_t size, int value);
-int jump_search(int *array, size_t size, int value);
-int interpolation_search(int *array, size_t size, int value);
-int exponential_search(int *array, size_t size, int value);
-int advanced_binary(int *array, size_t size, int value);
-listint_t *jump_list(listint_t *list, size_t size, int value);
-skiplist_t *linear_skip(skiplist_t *list, int value);
+	for (i = 0; i < size; i++)
+	{
+		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
+		if (array[i] == value)
+			return (i);
+	}
 
-#endif /* SEARCH_ALGOS_H */
+	return (-1);
+}
